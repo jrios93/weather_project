@@ -51,7 +51,6 @@ Y abre en tu navegador: [http://localhost:5173/weather](http://localhost:5173/we
 - `/views/WeatherView.vue`: vista principal de la ruta `/weather`
 - `/router/index.js`: define las rutas
 - `constant.js`: contiene la URL base
-- `.env`: tu clave de API (no se sube a GitHub)
 
 ## 💡 Cosas que me gustaría agregar
 

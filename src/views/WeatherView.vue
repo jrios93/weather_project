@@ -69,12 +69,27 @@ const validateCity = (cityName) => {
     return "City name is too long"
   }
   
-  if (!/^[a-zA-Z\s\-']+$/.test(trimmedCity)) {
-    return "City name should only contain letters, spaces, hyphens and apostrophes"
+   if (!/^[\p{L}\p{N}\s\-'.,]+$/u.test(trimmedCity)) {
+    return "El nombre de la ciudad solo debe contener letras, números, espacios, guiones, apostrofes y puntos";
   }
-  
-  return null
-}
+
+  // Validar que tenga al menos una letra (evitar solo números o símbolos)
+  if (!/\p{L}/u.test(trimmedCity)) {
+    return "El nombre de la ciudad debe contener al menos una letra";
+  }
+
+  // Validar que no tenga demasiados espacios consecutivos
+  if (/\s{3,}/.test(trimmedCity)) {
+    return "El nombre no puede tener más de 2 espacios consecutivos";
+  }
+
+  // Validar que no empiece o termine con guión o apostrofe
+  if (/^[\-']|[\-']$/.test(trimmedCity)) {
+    return "El nombre no puede empezar o terminar con guión o apostrofe";
+  }
+
+  return null; // Validación exitosa
+};
 
 const fetchweather = async () => {
   const validationError = validateCity(city.value)
